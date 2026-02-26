@@ -15,7 +15,7 @@ function App() {
     seterror('')
      if ( title.trim() !== "" && description.trim() !== "" ){
         
-        fetch('http://localhost:3000/todo',{
+        fetch('http://localhost:5000/todo',{
 
           method:"POST",
           headers :{
@@ -146,7 +146,7 @@ function App() {
       <ul className='list-group'>
         { todos.map((items,index)=>
         <li key ={index} className='list-group-item w-auto d-flex justify-content-between ms-4'>
-        { (editid == -1 || editid !== items._id) ? <div className='d-flex flex-column'>   
+        { (editid === -1 || editid !== items._id) ? <div className='d-flex flex-column'>   
         <span>{items.title}</span>
         <span>{items.description}</span>
         </div> : 
@@ -157,9 +157,9 @@ function App() {
       </div>  }
      
         <div className='d-flex gap-2' >
-          { (editid == -1 || editid !== items._id )?<button className='btn btn-success' onClick={()=>{seteditid(items._id);editsetTitle(items.title); editsetdescription(items.description)}}>edit</button>  : <button className='btn btn-warning' onClick={updatedata}>update</button>}
+          { (editid === -1 || editid !== items._id )?<button className='btn btn-success' onClick={()=>{seteditid(items._id);editsetTitle(items.title); editsetdescription(items.description)}}>edit</button>  : <button className='btn btn-warning' onClick={updatedata}>update</button>}
           
-          { (editid==-1  || editid !== items._id )
+          { (editid===-1  || editid !== items._id )
             ? <button className='btn btn-danger' onClick={ ()=> Delete_item(items._id)}>Delete</button>
             : <button className='btn btn-danger' onClick={ ()=> seteditid(-1)} >Cancel</button>
           }
