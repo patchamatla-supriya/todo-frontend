@@ -56,7 +56,7 @@ function App() {
   },[])
 
   const getitem = () => {
-    fetch('http://localhost:3000/todo')
+    fetch("https://todo-backend-api-dldp.onrender.com/todo")
     .then((res)=>{
       return res.json()
     })
@@ -70,7 +70,7 @@ function App() {
      seterror('')
      if ( edittitle.trim() !== "" && editdescription.trim() !== "" ){
         
-        fetch('http://localhost:3000/todo/'+editid,{
+        fetch('https://todo-backend-api-dldp.onrender.com/todo'+editid,{
 
           method:"PUT",
           headers :{
@@ -111,7 +111,7 @@ function App() {
 
   const Delete_item =(id)=>{
       if (window.confirm("confirm delete")){
-          fetch('http://localhost:3000/todo/'+id, {
+          fetch('"https://todo-backend-api-dldp.onrender.com/todo"'+id, {
               method:"DELETE"
           }  )
           .then(() => {
