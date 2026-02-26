@@ -24,25 +24,16 @@ function App() {
           body: JSON.stringify({title,description})
 
         }  )
-        .then((res) => {
-        if (res.ok) {
-          setTitle('')
-          setdescription('')
-          setmessage("Successfully added!")
-          seterror('')
-          setTimeout( ()=> {setmessage("")},2000 )
-          getitem()
-
-        } else {
-          seterror("Item not created")
-          
-        }
-        console.log("hiii"+todos)
-      })
-      .catch((err) => {
-        seterror("Item not created")
-        console.error(err)
-      });
+        .then((res) => res.json())
+.then((data) => {
+   setTitle('')
+   setdescription('')
+   setmessage("Successfully added!")
+   getitem()
+})
+.catch((err) => {
+   seterror("Item not created")
+})
 
         
         
