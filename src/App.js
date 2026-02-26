@@ -70,7 +70,7 @@ function App() {
      seterror('')
      if ( edittitle.trim() !== "" && editdescription.trim() !== "" ){
         
-        fetch('https://todo-backend-api-dldp.onrender.com/todo'+editid,{
+        fetch(`https://todo-backend-api-dldp.onrender.com/todo/${editid}`,{
 
           method:"PUT",
           headers :{
@@ -111,7 +111,7 @@ function App() {
 
   const Delete_item =(id)=>{
       if (window.confirm("confirm delete")){
-          fetch('https://todo-backend-api-dldp.onrender.com/todo'+id, {
+          fetch(`https://todo-backend-api-dldp.onrender.com/todo/${id}`, {
               method:"DELETE"
           }  )
           .then(() => {
