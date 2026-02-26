@@ -15,7 +15,7 @@ function App() {
     seterror('')
      if ( title.trim() !== "" && description.trim() !== "" ){
         
-        fetch('http://localhost:5000/todo',{
+        fetch('https://todo-backend-api-dldp.onrender.com/todo',{
 
           method:"POST",
           headers :{
