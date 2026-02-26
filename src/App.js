@@ -11,36 +11,45 @@ function App() {
   const [error,seterror]=useState('')
     const [message,setmessage]=useState('')
   
-  const funsubmit = ()=>{
-    seterror('')
-     if ( title.trim() !== "" && description.trim() !== "" ){
-        
-        fetch("https://todo-backend-api-dldp.onrender.com/todo",{
+  const funsubmit = () => {
+  seterror('');
 
-          method:"POST",
-          headers :{
-            'Content-type':"application/json"
-          },
-          body: JSON.stringify({title,description})
+  if (title.trim() !== "" && description.trim() !== "") {
 
-        }  )
-        .then((res) => res.json())
-.then((data) => {
-   setTitle('')
-   setdescription('')
-   setmessage("Successfully added!")
-   getitem()
-})
-.catch((err) => {
-   seterror("Item not created")
-})
+    fetch("https://todo-backend-api-dldp.onrender.com/todo", {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify({ title, description })
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to create item");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      setTitle('');
+      setdescription('');
+      setmessage("Successfully added!");
+      setTimeout(() => setmessage(""), 2000);
+      getitem();
+    })
+    .catch((err) => {
+      console.error(err);
+      seterror("Item not created");
+    });
+
+  }
+}
 
         
         
 
      }
     
-  }
+  
 
   useEffect(()=>{
     getitem()
@@ -167,7 +176,7 @@ function App() {
     </>
     
   );
-}
+
 
 export default App;
 
